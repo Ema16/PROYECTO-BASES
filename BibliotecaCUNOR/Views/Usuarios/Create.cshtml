@@ -1,0 +1,176 @@
+﻿@model BibliotecaCUNOR.Models.Usuario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!--<h1>Create</h1>
+
+<h4>Usuario</h4>-->
+<!--<div class="row">-->
+<head>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+</head>
+
+<body class="">
+    <h3>Crear usuario</h3>
+    <div class="row align-items-center mb-2">
+        <div class="col ml-2">
+            <img src="~/imagenes/logo1.png" height="75" />
+        </div>
+        <div class="col mr-2 text-right">
+            <p class="text-black-50">
+                <a class="text-black-50 mr-3" href=""></a>
+                <i class="https://localhost:44375">
+                </i>
+                Ir al Inicio
+            </p>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-10 col-lg-8">
+                <div class="card bg-transparent">
+                    <div class="card-body p-3">
+                        <div class="text-center w-75 m-auto">
+                            <a href="#">
+                                <span class="d-none d-sm-block">
+                                    <img src="~/imagenes/índice.jpg" />
+                                </span>
+                            </a>
+                            <p class="font-weight-bold mb-4 mt-3 h5">Crea tu acceso a la Biblioteca CUNOR</p>
+                        </div>
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-row mb-2">
+                                <div class="col-lg">
+                                    <label asp-for="Nombre" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Nombre" class="form-control" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg">
+                                    <label asp-for="Apellido" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Apellido" class="form-control" />
+                                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row mb-2">
+                                <div class="col-lg">
+                                    <label asp-for="Usuario1" class="control-label">
+                                    </label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Usuario1" class="form-control" placeholder="Registro Academico (carnet)/Registro Personal(Empleado)" />
+                                    <span asp-validation-for="Usuario1" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg">
+                                    <label asp-for="CorreoElectronico" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="CorreoElectronico" class="form-control" />
+                                    <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-row mb-2">
+                                <div class="col-lg">
+                                    <label asp-for="Contraseña" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Contraseña" class="form-control" placeholder="Contraseña de 8 caracteres" />
+                                    <span asp-validation-for="Contraseña" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg">
+                                    <label asp-for="Contraseña2" class="control-label">Confirma Contraseña</label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Contraseña2" class="form-control" placeholder="Contraseña de 8 caracteres" />
+                                    <span asp-validation-for="Contraseña2" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row mb-2">
+                                <div class="col-lg">
+                                    <label asp-for="Telefono" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <input asp-for="Telefono" class="form-control" />
+                                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-lg">
+                                    <label asp-for="CodTipousuario" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <select id="tipousuario" asp-for="CodTipousuario" class="form-control" asp-items="ViewBag.CodTipousuario"></select>
+                                </div>
+                            </div>
+                            <div id="carreracunor" class="form-group">
+                                <div class="Carrera">
+                                    <label asp-for="CodCarrera" class="control-label"></label>
+                                    <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                    <select asp-for="CodCarrera" class="form-control" asp-items="ViewBag.CodCarrera"></select>
+                                </div>
+                            </div>
+
+                            @{
+                                if (TempData.Peek("Mensaje") != null)
+                                {
+                                    <div class="alert alert-danger">@TempData.Peek("Mensaje") </div>
+                                }
+                            }
+
+                            <div class="form-group" style="text-align:center">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center ">
+                        <p class="text-black-50">
+                            ¿Ya tienes tu acceso?
+                            <a class="text-black-50 ml-1" href="https://localhost:44375">
+                                <b>Inicia Sesion</b>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Scripts-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tipousuario').change(function () {
+                    var ddlValue = $(this).find(':selected').text();
+
+                    if (ddlValue == "Estudiante") {
+                        // show time div, hide fromTo div
+                        $('#carreracunor').show();
+                    }
+                    else if (ddlValue == "Empleado CUNOR") {
+                        // show fromTo div, hide time div
+                        $('#carreracunor').hide();
+                    }
+                });
+            });
+        </script>
+
+    </div>
+    <!--</div>-->
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    <footer class="footer">
+        2020 Ingenieria en Ciencias y Sistemas
+    </footer>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

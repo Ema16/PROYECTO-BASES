@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaCUNOR", "BibliotecaCUNOR\BibliotecaCUNOR.csproj", "{A094A1D6-ED8B-4EC7-A27A-36894F2EC3EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A094A1D6-ED8B-4EC7-A27A-36894F2EC3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A094A1D6-ED8B-4EC7-A27A-36894F2EC3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A094A1D6-ED8B-4EC7-A27A-36894F2EC3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A094A1D6-ED8B-4EC7-A27A-36894F2EC3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEA1ED88-66E6-4968-A98B-F54DD3A32646}
+	EndGlobalSection
+EndGlobal

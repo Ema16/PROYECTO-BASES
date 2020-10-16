@@ -1,0 +1,146 @@
+﻿@model BibliotecaCUNOR.Models.Libro
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h1>Create</h1>
+
+<h4>Libro</h4>
+<hr />
+<div class="row">
+    <div id="modal-placeholder"></div>
+    <div class="col-md-10">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <h5>Detalles del Libro</h5>
+                <hr />
+                <div class="form-row m-2">
+                    <div class="col-lg">
+                        <label asp-for="Titulo" class="control-label"></label>
+                        <input asp-for="Titulo" class="form-control" />
+                        <span asp-validation-for="Titulo" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg">
+                        <label asp-for="Clave" class="control-label"></label>
+                        <input asp-for="Clave" class="form-control" />
+                        <span asp-validation-for="Clave" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-lg">
+                        <label asp-for="CodClasificacion" class="control-label"></label>
+                        <select asp-for="CodClasificacion" class="form-control" asp-items="ViewBag.CodClasificacion"></select>
+                    </div>
+                    <div class="col-lg">
+                        <label asp-for="Ejemplares" class="control-label"></label>
+                        <input asp-for="Ejemplares" class="form-control" />
+                        <span asp-validation-for="Ejemplares" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5>Detalles del Autor y Edicion</h5>
+                <hr />
+                <div class="form-row mb-2">
+                    <div class="col-lg">
+                        <label class="control-label">Nombres Autor</label>
+                        <select id="nombreautor" name="LibroAutor[0].Nombre" class="form-control" asp-items="ViewBag.CodAutor"></select>
+                        <span class="font-italic text-muted"></span>
+                        <button type="button" class="btn btn-primary" data-toggle="ajax-model" data-target="#add-editorial"
+                                data-url="@Url.Action("Create","Autors")">
+                            Agregar Nuevo Editorial
+                        </button>
+                    </div>
+                    <div class="col-lg">
+                        <label class="control-label">Apellidos Autor</label>
+                        <select name="LibroAutor[0].Apellido" class="form-control" asp-items="ViewBag.CodAutor"></select>
+                        <span class="font-italic text-muted"></span>
+                    </div>
+                </div>
+
+                <div class="form-row mb-2">
+                    <div class="col-lg">
+                        <label asp-for="CodEditorial" class="control-label"></label>
+                        <select id="editorial" asp-for="CodEditorial" class="form-control" asp-items="ViewBag.CodEditorial"></select>
+                    </div>
+
+                    <div class="col-lg">
+                        <label class="control-label">Edicion del Libro</label>
+                        <select id="edicionLibro" name="EdicionLibro[0].Edicion1" class="form-control" asp-items="ViewBag.CodEdicion"></select>
+                        <span class="font-italic text-muted">Seleccione una Carrera</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5>Detalles Adicionales</h5>
+                <hr />
+                <div class="form-row mb-2">
+                    <div class="col-lg">
+                        <label asp-for="Estado" class="control-label"></label>
+                        <input asp-for="Estado" class="form-control" />
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg">
+                        <label asp-for="Costo" class="control-label"></label>
+                        <input asp-for="Costo" class="form-control" />
+                        <span asp-validation-for="Costo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-lg">
+                        <label asp-for="Paginas" class="control-label"></label>
+                        <input asp-for="Paginas" class="form-control" />
+                        <span asp-validation-for="Paginas" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg">
+                        <label asp-for="Volumen" class="control-label"></label>
+                        <input asp-for="Volumen" class="form-control" />
+                        <span asp-validation-for="Volumen" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <label asp-for="FechaRegistro" class="control-label"></label>
+                <input asp-for="FechaRegistro" class="form-control" />
+                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CodUsuario" class="control-label"></label>
+                <select asp-for="CodUsuario" class="form-control" asp-items="ViewBag.CodUsuario"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section scripts{
+
+        <!--Scripts-->
+        <script type="text/javascript">
+            $(function () {
+                //Lista normal
+                $("#nombreautor,#editorial,#edicionLibro").chosen();
+            });
+        </script>
+        <!--Scripts-->
+    </div>
+}

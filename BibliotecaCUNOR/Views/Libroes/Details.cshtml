@@ -1,0 +1,84 @@
+﻿@model BibliotecaCUNOR.Models.Libro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Libro</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ejemplares)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ejemplares)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Paginas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Paginas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Volumen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Volumen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodClasificacionNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodClasificacionNavigation.Clase)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodEditorialNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodEditorialNavigation.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodUsuarioNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodUsuarioNavigation.Apellido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CodLibro">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
