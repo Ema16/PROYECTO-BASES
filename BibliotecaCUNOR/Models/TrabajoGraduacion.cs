@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BibliotecaCUNOR.Models
 {
@@ -27,6 +30,15 @@ namespace BibliotecaCUNOR.Models
         public int CodAsesor { get; set; }
         public int CodCarrera { get; set; }
         public int? CodTipotrabajo { get; set; }
+
+        [Required (ErrorMessage ="Debe Subir Un archivo")]
+        [NotMapped]
+        public IFormFile Subir { get; set; }
+
+        [NotMapped]
+        [Required (ErrorMessage ="Ingrese las etiquetas")]
+        public string PalabrasClaves { get; set; }
+
 
         public virtual Asesor CodAsesorNavigation { get; set; }
         public virtual Carrera CodCarreraNavigation { get; set; }

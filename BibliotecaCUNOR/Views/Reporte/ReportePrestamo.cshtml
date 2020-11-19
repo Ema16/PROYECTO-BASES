@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewData["Title"] = "ReportePrestamo";
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reportes</title>
+    <!--DATEPICKER-->
+    <link rel="stylesheet" type="text/css" href="~/calendario/jquery-ui-1.12.1.custom/jquery-ui.css" />
+    <script src="~/calendario/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+
+    <!--DATATABLE-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Reportes</small></h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#statistics" aria-controls="statistics" role="tab" data-toggle="tab">Estadísticas</a></li>
+            <li role="presentation"><a href="#bitacora" aria-controls="bitacora" role="tab" data-toggle="tab">Bitácora</a></li>
+            <li role="presentation"><a href="#reports" aria-controls="reports" role="tab" data-toggle="tab">Reportes y fichas</a></li>
+        </ul>
+        <div class="container-fluid">
+            <div class="container-flat-form">
+                <div class="title-flat-form title-flat-blue">Reporte Prestamos</div>
+                <div class="row">
+                    <form id="tablebuscar" class="form-padding">
+                        <div class="col-xs-12">
+                            <div class="group-material">
+                                <span>Seleccione el tipo de reporte que desea realizar</span>
+                                <select id="tiporeporte" name="tipo" class="tooltips-general material-control" required="" data-toggle="tooltip" data-placement="top" title="Elige el tipo de reporte">
+                                    <option value="" disabled="" selected="">¿Qué reporte desea realizar?</option>
+                                    <option value="Todos">Todos los Prestamos</option>
+                                    <option value="Prestados">Libros mas Prestados</option>
+                                    <option value="Perdidos">Prestamos Perdidos</option>
+                                    <option value="Devueltos">Prestamos Devueltos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input name="inicio" id="datepicker" type="text" class="material-control tooltips-general" placeholder="Elige la fecha inicial" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" data-toggle="tooltip" data-placement="top" title="Solamente números fechas validas">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Fecha Inicial</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input name="final" id="datepicker1" type="text" class="material-control tooltips-general" placeholder="Elige fecha final" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" data-toggle="tooltip" data-placement="top" title="Solamente números fechas validas">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Fecha Final</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <p class="text-center">
+                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                <button id="ver" type="submit" class="btn btn-primary" style="margin-right: 20px;"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Ver</button>
+                                <button id="exportar" type="button" class="btn btn-success"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Exportar</button>
+                            </p>
+                        </div>
+
+
+
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre del Libro</th>
+                                    <th>Nombre de Usuario</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha Solicitud</th>
+                                    <th>Fecha de Entrega</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    var table;
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '< Ant',
+        nextText: 'Sig >',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $(document).on("ready", function () {
+        $(function () {
+            $("#datepicker").datepicker({
+                showOn: "both",
+                buttonImage: "calendario/calender.png",
+                buttonImageOnly: true,
+                // buttonText: "Select date",
+                maxDate: "0D",
+
+                altField: "#alternate",
+                altFormat: "DD, d MM, yy"
+            });
+        });
+
+        $('#tiporeporte').change(function () {
+            var ddlValue = $(this).find(':selected').text();
+            if (ddlValue == "Libros mas Prestados") {
+            }
+            else {
+            }
+        });
+
+
+        $(function () {
+            $("#datepicker1").datepicker({
+                showOn: "both",
+                buttonImage: "calendario/calender.png",
+                buttonImageOnly: true,
+                // buttonText: "Select date",
+                maxDate: "0D",
+
+                altField: "#alternate",
+                altFormat: "DD, d MM, yy"
+            });
+        });
+    });
+
+     $('#ver').on('click', function () //Al hacer click sobre el boton button.form de la linea de arriba
+        {
+            var inicio = $('input[name="inicio"]').val();
+            var final = $('input[name="final"]').val();
+            var tipo = $('select[name="tipo"]').val();
+         //alert("tipo " + tipo + "inicio: " + inicio + "final: " + final);
+         $("#table_id").DataTable().destroy();
+         listar(tipo, inicio, final);
+         
+     });
+
+        $('#exportar').on('click', function () //Al hacer click sobre el boton button.form de la linea de arriba
+        {
+            var row = $(this).parent().parent().children().first().text();
+            $.ajax({
+                url: "/Prestamo/DetalleDevuelto",
+                method: "GET",
+                data: { id: row },
+                async: true,
+                success: function (res) {
+                    placeholderElement.html(res);
+                    placeholderElement.find('.modal').modal('show');
+                }
+            });
+
+        });
+
+        var listar = function (tipo, inicio, final) {
+            alert("tipo " + tipo + "inicio: " + inicio + "final: " + final);
+            $("#table_id").DataTable({
+                language:
+                {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                },
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5] }],
+                "proccessing": true,
+                "serverSide": true,
+                "filter": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Reporte/Json")",
+                    "type": "POST",
+                    "datatype": "json",
+                    data: {
+                        tipo: tipo, inicio: inicio, final: final
+                    }
+                },
+                "columns": [
+                    { "data": "codPrestamo", "name": "CodPrestamo", "autoWidth": true },
+                    { "data": "libro", "name": "Libro", "autoWidth": true },
+                    { "data": "nombreUsuario", "name": "NombreUsuario", "autoWidth": true },
+                    { "data": "tipo", "name": "Tipo", "autoWidth": true },
+                    { "data": "fechaSolicitud", "name": "FechaSolicitud", "autoWidth": true },
+                    { "data": "fechaRecepcion", "name": "FechaRecepcion", "autoWidth": true },
+                ]
+
+            });
+        }
+</script>
+  

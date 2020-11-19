@@ -1,0 +1,288 @@
+﻿
+@{
+    ViewData["Title"] = "Listpersonal";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Personal administrativo</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Administración Usuarios</small></h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+            <li role="presentation"><a href="~/Usuarios/Administrador">Administradores</a></li>
+            <li role="presentation"><a href="~/Usuarios/UsuariosBiblioteca">Usuarios de la Biblioteca</a></li>
+            <li role="presentation" class="active"><a href="~/Usuarios/personal">Personal Administrativo</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/user05.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido a la sección donde se encuentra el listado del personal administrativo registrado en el sistema, puedes desactivar la cuenta de cualquier Personal Administrativo del CUNOR.<br>
+                <strong class="text-danger"><i class="zmdi zmdi-alert-triangle"></i> &nbsp; ¡Importante! </strong>Si desactivas la cuenta, este mismo ya no tendra acceso al sistema.
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <ol class="breadcrumb">
+                    <li><a href="~/Usuarios/personal">Nuevo personal ad.</a></li>
+                    <li class="active">Listado de personal ad.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h2 class="text-center all-tittles" style="clear: both; margin: 25px 0;">Listado de personal administrativo</h2>
+
+        <div class="table-responsive">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Registro Personal</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Correo Electronico</th>
+                        <th>Cargo</th>
+                        <th>Telefono</th>
+                        <th>Estado</th>
+                        <th>Detalles</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!--
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 15%;">DUI</div>
+                    <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                    <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                    <div class="div-table-cell" style="width: 12%;">Teléfono</div>
+                    <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                    <div class="div-table-cell" style="width: 9%;">Actualizar</div>
+                    <div class="div-table-cell" style="width: 9%;">Eliminar</div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">DUI</div>
+                        <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfonos</div>
+                        <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                        </div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">DUI</div>
+                        <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfonos</div>
+                        <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                        </div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">DUI</div>
+                        <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfonos</div>
+                        <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                        </div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">DUI</div>
+                        <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfonos</div>
+                        <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                        </div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">DUI</div>
+                        <div class="div-table-cell" style="width: 15%;">Apellidos</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfonos</div>
+                        <div class="div-table-cell" style="width: 15%;">Cargo</div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                        </div>
+                        <div class="div-table-cell" style="width: 9%;">
+                            <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
+
+
+</body>
+</html>
+
+
+<script>
+    var table;
+    var placeholderElement = $("#modal-placeholder");
+    $(document).ready(function () {
+       table=$("#table_id").DataTable({
+                language:
+                    {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                },
+           "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [8] }, { 'bSortable': false, 'aTargets': [9] }],
+                "proccessing": true,
+                "serverSide": true,
+                "filter": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Usuarios/JsonPersonal")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "codUsuario", "name": "CodUsuario", "autoWidth": true },
+                    { "data": "usuario1", "name": "Usuario1", "autoWidth": true },
+                    { "data": "apellido", "name": "Apellido", "autoWidth": true },
+                    { "data": "nombre", "name": "Nombre", "autoWidth": true },
+                    { "data": "correoElectronico", "name": "CorreoElectronico", "autoWidth": true },
+                    { "data": "cargo1", "name": "Cargo1", "autoWidth": true },
+                    { "data": "telefono", "name": "Telefono", "autoWidth": true },
+                    { "data": "estado", "name": "Estado", "autoWidth": true },
+                    { "defaultContent": "<button id='detallesPer' type='button' class='form btn-info tooltips-general'> <span class='zmdi zmdi-swap'></span>&nbsp;&nbsp; Detalles</button>" },
+                    { "defaultContent": "<button id='accionPer' type='button' class='form btn-info tooltips-general'> <span class='zmdi zmdi-swap'></span>&nbsp;&nbsp; Cambiar Estado</button>" },
+                ]
+
+            });
+        $('#table_id tbody').on('click', '#detallesPer', function () //Al hacer click sobre el boton button.form de la linea de arriba
+            {
+                var row = $(this).parent().parent().children().first().text();
+                // console.log(row);
+                $.ajax({
+                    url: "/Usuarios/UsuarioDetalle",
+                    method: "GET",
+                    data: { id: row },
+                    async: true,
+                    success: function (res) {
+                        placeholderElement.html(res);
+                        placeholderElement.find('.modal').modal('show');
+                    }
+                });
+
+            });
+
+
+        $('#table_id tbody').on('click', '#accionPer', function () //Al hacer click sobre el boton button.form de la linea de arriba
+        {
+            var row = $(this).parent().parent().children().first().text();
+            // console.log(row);
+            $.ajax({
+                url: "/Usuarios/EstadoUsuario",
+                method: "POST",
+                data: { id: row },
+                async: true,
+                success: function (res) {
+                    placeholderElement.html(res);
+                    placeholderElement.find('.modal').modal('show');
+                }
+            });
+
+        });
+
+        $('#modal-placeholder').on('click', '#actualizaradmin', function () //Al hacer click sobre el boton button.form de la linea de arriba
+        {
+            placeholderElement.find('.modal').modal('hide');
+            table.ajax.reload(null, false);
+            // console.log(row);
+        });
+
+    });
+</script>
+
+
+

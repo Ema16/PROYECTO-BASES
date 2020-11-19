@@ -20,9 +20,10 @@
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\3.1.9\build\netcoreapp2.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\3.1.9\build\netcoreapp2.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgWebGrease Condition=" '$(PkgWebGrease)' == '' ">C:\Users\Emanuel\.nuget\packages\webgrease\1.5.2</PkgWebGrease>
+    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\Emanuel\.nuget\packages\jquery\3.5.1</PkgjQuery>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\Emanuel\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\Emanuel\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.9</PkgMicrosoft_EntityFrameworkCore_Tools>
-    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\Emanuel\.nuget\packages\jquery\3.5.1</PkgjQuery>
     <PkgjQuery_UI_Combined Condition=" '$(PkgjQuery_UI_Combined)' == '' ">C:\Users\Emanuel\.nuget\packages\jquery.ui.combined\1.12.1</PkgjQuery_UI_Combined>
   </PropertyGroup>
 </Project>

@@ -46,9 +46,13 @@ namespace BibliotecaCUNOR.Models
 
         [Required(ErrorMessage = "El usuario es necesario")]
         [Remote(action: "VerificarUsuario", controller: "Usuarios")]
-        // [StringLength(9,ErrorMessage ="Usuario Incorrecto", MinimumLength =9)]
         [Display(Name = "Usuario")]
+        [RegularExpression("[0-9]{9,9}", ErrorMessage ="Carnet Invalido")]
         public int Usuario1 { get; set; }
+
+        
+        [Required(ErrorMessage = "Ingrese su numero de telefono")]
+        [RegularExpression("[0-9]{8,8}", ErrorMessage ="Numero de Telefono Invalido")]
         public int Telefono { get; set; }
         public byte[] Foto { get; set; }
         public string ActivarUsuario { get; set; }
@@ -60,8 +64,21 @@ namespace BibliotecaCUNOR.Models
         public int? CodCargo { get; set; }
 
         [Display(Name = "¿Usted Es?")]
+        [Required(ErrorMessage ="Seleccione una opcion")]
         public int CodTipousuario { get; set; }
         public string RecContraseña { get; set; }
+
+        [NotMapped]
+        public string cargo1 { get; set; }
+
+        [Display(Name = "Full Name Usuario")]
+        public string FullName
+        {
+            get
+            {
+                return Nombre + " " + Apellido;
+            }
+        }
 
         public virtual Carrera CodCarreraNavigation { get; set; }
         public virtual RolUsuario CodRolusuarioNavigation { get; set; }

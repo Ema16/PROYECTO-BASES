@@ -4,92 +4,81 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Catálogo</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+    <link href="~/buscador/css/main.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .btn-get-started {
+            font-family: "Poppins", sans-serif;
+            /*text-transform: uppercase;*/
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 5px 40px;
+            border-radius: 50px;
+            transition: 0.5s;
+            margin: 10px;
+            border: 0.5px solid #000000;
+            color: black;
+            background: white;
+        }
+    </style>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Clave)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Costo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ejemplares)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Paginas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Volumen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaRegistro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodClasificacionNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodEditorialNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodUsuarioNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Costo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ejemplares)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paginas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Volumen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodClasificacionNavigation.Clase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodEditorialNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodUsuarioNavigation.Apellido)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CodLibro">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CodLibro">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CodLibro">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Catálogo de libros</small></h1>
+        </div>
+    </div>
+
+    <!--
+    <div class="container-fluid" style="margin: 0 0 50px 0;">
+        <h2 class="text-center" style="margin: 0 0 25px 0;">Categorías</h2>
+        <ul class="list-unstyled text-center list-catalog-container">
+            <li class="list-catalog">Categoría</li>
+            <li class="list-catalog">Categoría</li>
+            <li class="list-catalog">Categoría</li>
+        </ul>
+    </div>
+        -->
+    <!--BUSCADOR-->
+    <div class="container-fluid" style="padding-top:10%">
+        <form asp-controller="Libroes" asp-action="Busqueda">
+            <fieldset>
+                <legend><img src="~/imagenes/logo1.png" alt="pdf" class="img-responsive center-box" style="max-width: 300px;"></legend>
+                <div class="inner-form" >
+                    <div class="input-field">
+                        <button class="btn-search" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </button>
+                        <input id="search" type="text" class="form-control" value="@ViewData["Getemployeedetails"]" name="bookName" required="" />
+                        <center>
+                            <button class="btn-get-started" type="submit">Buscar</button>
+
+                        </center>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+</body>
+</html>
+

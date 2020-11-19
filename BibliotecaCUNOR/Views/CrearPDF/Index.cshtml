@@ -1,0 +1,150 @@
+﻿@model IEnumerable<BibliotecaCUNOR.Models.DetPrestamo>
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<head>
+    <style>
+        .greeting h2 {
+            margin: 0px;
+            line-height: 20px;
+        }
+
+        .greeting h3 {
+            margin: 0px;
+            line-height: 20px;
+        }
+
+        .greeting h4 {
+            margin: 0px;
+            line-height: 20px;
+        }
+
+
+        #content {
+            position: relative;
+        }
+
+            #content img {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+
+        .ribbon {
+            position: relative;
+            top: -16px;
+            right: -706px;
+            height: 80px;
+            width: 80px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 2px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: grey;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="content">
+        <img src="~/imagenes/logo-usac.png" class="ribbon" />
+    </div>
+    <br />
+    <div class="greeting">
+        <center>
+            <h2>UNIVERSIDAD DE SAN CARLOS DE GUATEMALA</h2>
+            <h3>CENTRO UNIVERSITARIO DEL NORTE -CUNOR-</h3>
+            <h4>BOLETA DE PRESTAMO - BIBLIOTECA CUNOR</h4>
+        </center>
+    </div>
+    <hr />
+
+    <table style="border:hidden">
+        <tr>
+            <th>Lector</th>
+            <th>Rol</th>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td>Smith</td>
+        </tr>
+    </table>
+
+
+
+    <h2>Libros Prestados</h2>
+    <table id="t01">
+        <thead>
+            <tr>
+                <th>
+                    Titulo Del Libro
+                </th>
+                <th>
+                    Clave del Libro
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in ViewData["Libros"] as IList<TrabajoGraduacion>)
+            {
+                <tr>
+                    <td>@item.Titulo</td>
+                    <td>@item.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+        <br />
+        <table style="border:hidden">
+            <tr>
+                <th>Fecha Prestamo</th>
+                <th>Fecha Devolucion</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+            </tr>
+
+        </table>
+        <p style="text-align:justify">
+            El libro/libros que estoy solicitando a la Biblioteca del CUNOR se encuentra en buen estado, las fechas de préstamo y de entrega se encuentran indicadas en la parte superior, yo estudiante me comprometo  a cumplirlas y evitar las sanciones correspondientes. En caso de maltrato o extravió del libro/libros aquí mencionado tendré que cubrir la totalidad del costo para que sea repuesto.
+            Costo por día de retraso Q 30.00
+        </p>
+        <center>
+            <p>________________________________</p>
+            <p> Firma del Lector </p>
+        </center>
+
+</body>
+
+
+

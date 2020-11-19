@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BibliotecaCUNOR.Models.TrabajoGraduacion>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+
+@{
+    ViewData["Title"] = "Busqueda";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Buscar libro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Catálogo Trabajos de Graduacion</small></h1>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin: 40px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/checklist.png" alt="pdf" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido al catálogo,  si deseas buscar un Trabajo de Graduacion/TESIS por nombre o título has click en el icono &nbsp; <i class="zmdi zmdi-search"></i> &nbsp; que se encuentra en la barra superior
+            </div>
+        </div>
+    </div>
+
+    <form class="form-padding" asp-controller="TrabajoGraduacions" asp-action="Busqueda">
+        <div class="input-group right">
+            <span class="input-group-addon"></span>
+            <input type="search" placeholder="Ingrese palabras claves" class="form-control" value="@ViewData["Getemployeedetails"]" name="bookName" />
+        </div>
+    </form>
+
+    <div id="modal-placeholder"></div>
+    <div class="container-fluid">
+        <br>
+        <h3 class="text-center all-tittles">Resultados de la búsqueda</h3>
+        @{int contador = 1; }
+
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <div class="media media-hover">
+                    <div class="media-left media-middle">
+                        <a href="#!" class="tooltips-general" data-toggle="tooltip" data-placement="right" title="Más información del libro">
+                            <img class="media-object" src="~/assets/img/book.png" alt="Libro" width="48" height="48">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="#" data-toggle="ajax-model" data-target="#detail-trabajo" data-url="@Url.Action($"DetailsTrabajo/{item.CodRegistro}","TrabajoGraduacions")"><strong>@contador</strong> @Html.DisplayFor(modelItem => item.Titulo)</a>
+                        </h4>
+                        <div class="pull-left">
+                            @Html.DisplayFor(modelItem => item.NombreAutor)  @Html.DisplayFor(modelItem => item.ApellidoAutor)<br>
+                            @Html.DisplayFor(modelItem => item.NombreInstitucion) - @Html.DisplayFor(modelItem => item.CodCarreraNavigation.Carrera1)<br>
+                            @Html.DisplayFor(modelItem => item.CodTipotrabajoNavigation.Tipo) - @Html.DisplayFor(modelItem => item.CodCatNavigation.Categoria)<br />
+                        </div>
+                        <p class="text-center pull-right">
+                            <a href="#!" data-toggle="ajax-model" data-target="#detail-trabajo" data-url="@Url.Action($"DetailsTrabajo/{item.CodRegistro}","TrabajoGraduacions")" class="btn btn-info btn-xs" style="margin-right: 10px;"><i class="zmdi zmdi-info-outline"></i> &nbsp;&nbsp; Más información</a>
+                        </p>
+                    </div>
+                </div>
+
+
+
+                contador = contador + 1;
+                <!--
+                    <a asp-action="Edit" asp-route-id="@item.CodRegistro">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CodRegistro">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodRegistro">Delete</a>
+                -->
+
+            }
+        }
+        else
+        {
+            <h2 class="text-center"><i class="zmdi zmdi-mood-bad zmdi-hc-5x"></i><br><br>Lo sentimos, no hemos encontrado ningún Trabajo de Graduacion/TESIS con el nombre <strong>@ViewData["Busqueda1"] </strong> en el sistema</h2>
+        }
+
+
+
+        @if (ViewBag.Titulo != null || ViewBag.Titulo != "" || ViewBag.NombreAutor != null || ViewBag.NombreAutor != "" || ViewBag.NombreInstitucion != null || ViewBag.NombreInstitucion != "" || ViewBag.Empresa != null || ViewBag.Empresa != "")
+        {
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { pagina = page, titulo = @ViewBag.Titulo, autor = @ViewBag.NombreAutor, institucion = @ViewBag.NombreInstitucion, Empsearch = @ViewBag.Empresa }))
+        }
+        else
+        {
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { pagina = page }))
+        }
+
+    </div>
+
+</body>
+</html>

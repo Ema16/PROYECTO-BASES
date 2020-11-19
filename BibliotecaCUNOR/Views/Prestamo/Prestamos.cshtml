@@ -1,0 +1,245 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Prestamos</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Préstamos y Reservaciones</small></h1>
+        </div>
+    </div>
+    <div class="conteiner-fluid">
+        <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+            <li class="active"><a href="~/Prestamo/Prestamos">Todos los préstamos</a></li>
+            <li><a href="~/Prestamo/DevolucionesPendientes">Devoluciones pendientes</a></li>
+            <li><a href="~/Prestamo/Ficha">Nuevo Prestamo</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/calendar_book.png" alt="calendar" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido a esta sección, aquí se muestran todos los préstamos de libros realizados hasta la fecha y que ya se entregaron satisfactoriamente
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <h2 class="text-center all-tittles">Listado de préstamos</h2>
+        <div id="modal-placeholder"></div>
+        <table id="tbprestamos_id" class="display">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del Libro</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Tipo</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Fecha de Entrega</th>
+                    <th>Ver Ficha</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!--
+    <div class="container-fluid">
+        <h2 class="text-center all-tittles">Listado de préstamos</h2>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">Eliminar</div>
+                    <div class="div-table-cell" style="width: 8%;">Ver Ficha</div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                    </div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                    </div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                    </div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                    </div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div class="div-table" style="margin:0 !important;">
+                <div class="div-table-row div-table-row-list">
+                    <div class="div-table-cell" style="width: 6%;">#</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                    <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                    <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                    <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                    </div>
+                    <div class="div-table-cell" style="width: 8%;">
+                        <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    -->
+</body>
+</html>
+
+<script>
+    var placeholderElement = $("#modal-placeholder");
+        $(document).ready(function () {
+            $("#tbprestamos_id").DataTable({
+                language:
+                    {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                },
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5] }],
+                "proccessing": true,
+                "serverSide": true,
+                "filter": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Prestamo/Json")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "pageLength": 10,
+                "responsivePriority": 1,
+                "data": null,
+                "columns": [
+                    { "data": "codPrestamo", "name": "CodPrestamo", "autoWidth": true },
+                    { "data": "libro", "name": "Libro", "autoWidth": true },
+                    { "data": "nombreUsuario", "name": "NombreUsuario", "autoWidth": true },
+                    { "data": "tipo", "name": "Tipo", "autoWidth": true },
+                    { "data": "fechaSolicitud", "name": "FechaSolicitud", "autoWidth": true },
+                    { "data": "fechaRecepcion", "name": "FechaRecepcion", "autoWidth": true },
+                    { "defaultContent": "<button id='iddetalle' type='button' class='form btn btn-info'> <span class='glyphicon glyphicon-info-sign'></span> &nbsp;&nbsp;Detalles</button>" },
+                ]
+
+            });
+
+
+            $('#tbprestamos_id tbody').on('click', '#iddetalle', function () //Al hacer click sobre el boton button.form de la linea de arriba
+            {
+                var row = $(this).parent().parent().children().first().text();
+                // console.log(row);
+                $.ajax({
+                    url: "/Prestamo/DetalleDevuelto",
+                    method: "GET",
+                    data: { id: row },
+                    async: true,
+                    success: function (res) {
+                        placeholderElement.html(res);
+                        placeholderElement.find('.modal').modal('show');
+                    }
+                });
+
+            });
+        });
+</script>
+
+

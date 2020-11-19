@@ -1,0 +1,122 @@
+﻿@model BibliotecaCUNOR.Models.Libro
+
+<div class="modal fade" id="addEditor">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addEditorLabel">Detalle del Libro <strong>@Model.Titulo</strong></h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <ol class="breadcrumb">
+                    <li><a href="#" class="close" data-dismiss="modal">Libros</a></li>
+                    <li class="active">@(Model.Titulo)</li>
+                </ol>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos del Libro</div>
+                    <div class="panel-body"></div>
+                    <dl class="dl-horizontal">
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <dt>Clave del Libro</dt>
+                            <dd>@Model.Clave</dd>
+                        }
+                        <dt>Titulo</dt>
+                        <dd>@Model.Titulo</dd>
+                        <dt>Ejemplares</dt>
+                        <dd>@Model.Ejemplares</dd>
+                        <dt>Paginas</dt>
+                        <dd>@Model.Paginas</dd>
+                        <dt>Volumen</dt>
+                        <dd>@Model.Volumen</dd>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <dt>Costo del Libro</dt>
+                            <dd>@Model.Costo</dd>
+                            <dt>Estado del Libro</dt>
+                            <dd>@Model.Estado</dd>
+                            <dt>Fecha de Registro</dt>
+                            <dd>@Model.FechaRegistro</dd>
+                        }
+                    </dl>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Editorial/Edicion</div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Editorial</dt>
+                            <dd>@Model.CodEditorialNavigation.Nombre</dd>
+                            <dt>Edicion/Ediciones</dt>
+                            @foreach (var item in Model.EdicionLibro)
+                            {
+                                <dd>@Html.DisplayFor(itemModel => item.CodEdicionNavigation.Edicion1)</dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Autor/Autores del Libro</div>
+                    <div class="panel-body">
+                        @if (!User.IsInRole("Administrador"))
+                        {
+                        <ul class="list-group">
+                            @foreach (var item in Model.LibroAutor)
+                            {
+                                <li class="list-group-item">
+                                    <a href="@Url.Action("Busqueda","Libroes", new { parametro = item.CodAutor })">@Html.DisplayFor(modelItem => item.CodAutorNavigation.Nombre) @Html.DisplayFor(modelItem => item.CodAutorNavigation.Apellido) </a>
+                                </li>
+                            }
+                        </ul>
+                        }
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <ul class="list-group">
+                                @foreach (var item in Model.LibroAutor)
+                                {
+                                <li class="list-group-item">
+                                    @Html.DisplayFor(modelItem => item.CodAutorNavigation.Nombre) @Html.DisplayFor(modelItem => item.CodAutorNavigation.Apellido)
+                                </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+
+                @if (User.IsInRole("Administrador")) { 
+                <div class="panel panel-default">
+                    <div class="panel-heading">Otros Datos</div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Clase</dt>
+                            <dd>@Model.CodClasificacionNavigation.CodigoClase @Model.CodClasificacionNavigation.Clase</dd>
+                            <dt>Division</dt>
+                            <dd>@Model.CodClasificacionNavigation.CodigoDivision @Model.CodClasificacionNavigation.Division</dd>
+                            <dt>Clasificacion</dt>
+                            <dd>@Model.CodClasificacionNavigation.CodigoClasificacion @Model.CodClasificacionNavigation.Clasificacion1</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Observaciones</dt>
+                            @foreach(var item in Model.Observacion) { 
+                            <dd>* @Html.DisplayFor(modelItem => item.Observacion1)</dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn-primary" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

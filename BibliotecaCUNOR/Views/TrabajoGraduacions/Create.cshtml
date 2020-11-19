@@ -1,0 +1,270 @@
+﻿@model BibliotecaCUNOR.Models.TrabajoGraduacion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>TRABAJOS DE GRADUACION</title>
+    <!--CHOSEN-->
+    <script src="~/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/chosen/chosen.css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!--TAGS-->
+    <link href="~/tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <script src="~/tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="~/tagsinput/bootstrap-tagsinput-angular.js"></script>
+    <!--
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.css">
+    <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"> </script>
+        -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Añadir Trabajo de Graduacion</small></h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+            <li role="presentation" class="active"><a href="~/TrabajoGraduacions/Create">Trabajos de Graduacion</a></li>
+            <li role="presentation"><a href="~/TrabajoGraduacions/Tesis">Tesis</a></li>
+        </ul>
+    </div>
+
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/flat-book.png" alt="pdf" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido a la sección para agregar nuevos Trabajos de Graduacion, deberas de llenar todos los campos para poder registrar el Trabajo de Graduacion
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <ol class="breadcrumb">
+                    <li class="active">Registrar Trabajos de Graduacion</li>
+                    <li><a href="~/TrabajoGraduacions/ListTrabajo">Listado Trabajos de Graduacion</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-placeholder"></div>
+    <div class="container-fluid">
+        <div class="container-flat-form">
+            <div class="title-flat-form title-flat-blue">Nuevo Registro de Trabajo de Graduacion</div>
+            <form enctype="multipart/form-data" asp-action="Create" class="form-padding" style="padding-left:5%; padding-right:5%;">
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-account-box"></i> &nbsp; Datos del Registro</legend><br>
+                    </div>
+
+
+                    <div class="col-xs-12">
+                        <div id="clasificacionTrab" class="group-material">
+                            <span>Clasificacion del Trabajo</span>
+                            <select asp-for="CodCat" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" required="" title="¿Que esta registrando?" asp-items="ViewBag.CodCat">
+                                <option value="" disabled="" selected="">Selecciona una categoría</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-account-box"></i> &nbsp; Datos Generales del Trabajo de Graduacion</legend><br>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Titulo" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el título del Trabajo de Graduacion / Tesis" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el título del Trabajo de Graduacion/Tesis">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Título</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="NombreInstitucion" type="text" class="tooltips-general material-control" placeholder="Ingrese la Institucion" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe aqui el Nombre de la Instucion">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Nombre Institucion</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Año" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el Año del Trabajo de Graduacion/Tesis" pattern="[0-9]{1,4}" required="" maxlength="4" data-toggle="tooltip" data-placement="top" title="Escribe el código correlativo del libro, solamente números">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Año</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <p> Subir archivos:</p>
+                            <input asp-for="Subir" type="file" accept="application/pdf" />
+                            <span asp-validation-for="Subir" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-caret-up"></i> &nbsp; Datos del Autor del Trabajo de Graduacion/TESIS</legend><br>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="NombreAutor" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el nombre del Autor" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del autor del Trabajo de Graduacion">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Nombre Autor</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="ApellidoAutor" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el Apellido del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el Apellido del autor del libro">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Apellido Autor</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <input asp-for="CarnetAutor" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número de carnet del Autor" pattern="[0-9]{9,9}" required="" maxlength="9" data-toggle="tooltip" data-placement="top" title="Solamente 9 números">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Carnet Autor</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <span>Carrera</span>
+                            <select asp-for="CodCarrera" asp-items="ViewBag.CodCarrera" class="tooltips-general material-control" required="" data-toggle="tooltip" data-placement="top" title="Elige la carrera del Autor">
+                                <option value="" disabled="" selected="">Elija la carrera del Autor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-caret-up"></i> &nbsp; Datos del Asesor</legend><br>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <span>Asesor</span>
+                            <select id="idasesor" asp-for="CodAsesor" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" required="" title="Elige un Asesor" asp-items="ViewBag.CodAsesor">
+                                <option value="" disabled="" selected="">Selecciona el Asesor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-map"></i> &nbsp; Otros Aspectos</legend><br>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Observacion" type="text" class="tooltips-general material-control" placeholder="Escribe una observacion del libro (opcional)" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe la observacion">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Observacion</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Nota" type="text" class="tooltips-general material-control" placeholder="Escribe aqui alguna nota sobre el Trabajo de Graduacion/Tesis" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe alguna nota sobre/Trabajo de Graduacion/Tesis">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Nota</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-tag"></i> &nbsp; Etiquetas</legend><br>
+                    </div>
+
+                    <div class="col-xs-12 ">
+                        <div class="group-material">
+                            <input data-role="tagsinput" asp-for="PalabrasClaves" type="text" class="tooltips-general material-control" placeholder="Escribe aquí las palabras claves separadas por coma" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe las palabras claves">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Palabras Claves</label>
+                        </div>
+                    </div>
+
+                    <!--
+                            <div class="form-group">
+                                <label asp-for="CodUsuario" class="control-label"></label>
+                                <select asp-for="CodUsuario" class="form-control" asp-items="ViewBag.CodUsuario"></select>
+                            </div>
+            -->
+                    <div class="col-xs-12">
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+            @if (ViewBag.mensajeTra != null)
+            {
+
+                <script>
+                    swal(
+                        'Registro Exito!',
+                        'Trabajo Registrado con Exito!',
+                        'success'
+                    );
+                </script>
+
+            }
+            
+
+        </div>
+        @if (ViewBag.confirmacion != null)
+        {
+            <div class='modal fade' id='myModal' role='dialog'>
+                <div class='modal-dialog'>
+
+                    <!-- Modal content-->
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                            <h4 class='modal-title'> Mensaje de Confirmacion de Registro </h4>
+                        </div>
+                        <div class='modal-body'>
+                            <h2>@ViewBag.confirmacion</h2>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        jQuery("#tagsinput").tagsManager();
+
+        $("#modal-placeholder").modal("show");
+    });
+</script>
+
+
+

@@ -1,0 +1,130 @@
+﻿
+@model BibliotecaCUNOR.Models.Prestamo
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Detalle Prestamo</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Préstamos</small></h1>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/user01.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Detalles del Prestamo Devuelto
+            </div>
+        </div>
+    </div>
+
+    @{int contador = 0; }
+    <!--ESTO SE QUEDA-->
+<div class="container-fluid">
+    <div class="container-flat-form">
+        <div class="title-flat-form title-flat-blue">Generar una nueva boleta de Prestamo</div>
+        <form class="form-padding1">
+            <div class="panel panel-footer" style="padding-left:15%; padding-right:15%">
+                <div class="panel-heading">Datos del Usuario</div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Datos del Usuario</dt>
+                        <dd>@Model.CodUsuarioNavigation.Nombre @Model.CodUsuarioNavigation.Apellido</dd>
+                        <dt>Telefono</dt>
+                        <dd>@Model.CodUsuarioNavigation.Telefono</dd>
+                        <dt>Carnet</dt>
+                        <dd>@Model.CodUsuarioNavigation.Usuario1</dd>
+                        <dt>Correo Electronico</dt>
+                        <dd>@Model.CodUsuarioNavigation.CorreoElectronico</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Informacion del Prestamo</div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Fecha de Prestamo</dt>
+                        <dd>@Model.FechaPrestamo</dd>
+                        <dt>Fecha Devolucion</dt>
+                        <dd>@Model.FechaDevolucion</dd>
+                        <dt>Dias de Atraso</dt>
+                        <dd>@Model.DiasAtraso</dd>
+                        <dt>Mora Generado</dt>
+                        <dd>Q.@Model.Mora.00</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="panel panel-footer" style="padding-left:15%; padding-right:15%">
+                <div class="panel-heading">Libro/Libros Prestados</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @foreach (var item in Model.DetPrestamo)
+                        {
+                            if (item.Estado.Equals("Perdido"))
+                            {
+                                <li class="list-group-item" style="background:red">
+                                    @Html.DisplayFor(modelItem => item.CodLibroNavigation.Titulo)
+                                </li>
+                                contador = contador + 1;
+                            }
+                            else
+                            {
+                                <li class="list-group-item">
+                                    @Html.DisplayFor(modelItem => item.CodLibroNavigation.Titulo)
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                    <input type="hidden" name="CodPrestamo" value="@Model.CodPrestamo" />
+                </div>
+                @if (contador > 0)
+                {
+                    <hr />
+                    <center>
+                        <label><strong>Carnet&nbsp;&nbsp;</strong>@Model.CodUsuarioNavigation.Usuario1&nbsp; - &nbsp;@Model.CodUsuarioNavigation.Apellido @Model.CodUsuarioNavigation.Nombre</label>
+                    </center>
+                    <p style="text-align:center">
+                        Nota: A consecuencia de que el estudiante ha perdido los libros que estan enmarcados en color rojo,
+                        puede generar el respectivo <strong>Reporte</strong> de <strong>perdida de libros</strong>, en las opciones
+                        <strong>Generar Informe</strong> y <strong>Guardar Informe</strong>.
+                    </p>
+                }
+            </div>
+
+        </form>
+    </div>
+
+
+    <center>
+        <div class="col-xs-12">
+            @if (contador > 0)
+            {
+                <form asp-action="ImprimirReporte">
+                    <button type="submit" formtarget="_blank" class="btn-primary"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimi Informe</button>
+                    <input name="CodigoPrestamo" type="hidden" value="@Model.CodPrestamo" />
+                </form>
+                <br />
+                <form asp-action="DescargarReporte">
+                    <button type="submit" class="btn-success"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;Guardar Informe</button>
+                    <input name="CodigoPrestamo" type="hidden" value="@Model.CodPrestamo" />
+                </form>
+            }
+            <br />
+            <form>
+                <button asp-action="Ficha" asp-controller="Prestamo" type="submit" class="btn-primary">Prestamos</button>
+            </form>
+        </div>
+    </center>
+</div>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BibliotecaCUNOR.Models
 {
@@ -17,6 +18,14 @@ namespace BibliotecaCUNOR.Models
         public string Clase { get; set; }
         public string Division { get; set; }
         public string Clasificacion1 { get; set; }
+
+        [Display(Name ="Clasificacion del Libro")]
+        public string ClasificacionFull
+        {
+            get { 
+                return CodigoClase + " " + CodigoDivision + " " + CodigoClasificacion + " " + Clase + " " + Division + " " + Clasificacion1; 
+            }
+        }
 
         public virtual ICollection<Libro> Libro { get; set; }
     }

@@ -1,0 +1,170 @@
+﻿
+@model BibliotecaCUNOR.Models.Prestamo
+@{
+    ViewData["Title"] = "Boleta";
+    Layout = null;
+}
+<head>
+    <style>
+        #fecha {
+            color: red;
+        }
+
+        .greeting h2 {
+            margin: 0px;
+            line-height: 25px;
+        }
+
+        .greeting h3 {
+            margin: 0px;
+            line-height: 25px;
+        }
+
+        .greeting h4 {
+            margin: 0px;
+            line-height: 25px;
+        }
+        #content {
+            position: relative;
+        }
+
+            #content img {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+
+        .ribbon {
+            position: relative;
+            top: -16px;
+            right: -706px;
+            height: 80px;
+            width: 80px;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: lightgrey;
+        }
+    </style>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="content">
+        <img src="~/imagenes/logo-usac.png" class="ribbon" />
+    </div>
+    <div class="greeting">
+        <center>
+            <h2>UNIVERSIDAD DE SAN CARLOS DE GUATEMALA</h2>
+            <h3>CENTRO UNIVERSITARIO DEL NORTE -CUNOR-</h3>
+            <h4>BOLETA DE PRESTAMO - BIBLIOTECA CUNOR</h4>
+        </center>
+    </div>
+    <table style="border:hidden">
+        <tr>
+            <td><strong>Lector:&nbsp;&nbsp; </strong>Emanuel Amperez</td>&nbsp;&nbsp;
+            <td><strong>Rol:&nbsp;&nbsp; </strong>Estudiante</td>
+        </tr>
+    </table>
+    <br />
+    <div class="greeting">
+        <h3 id="1">Libros Prestados</h3>
+    </div>
+    <table id="t01">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Clave del Libro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Librp 1</td>
+                <td>Clave 1</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Librp 2</td>
+                <td>Clave 2</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Librp 3</td>
+                <td>Clave 3</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <table style="border:hidden">
+        <tr>
+            <td><strong>Fecha Prestamo:&nbsp;&nbsp; </strong>23/04/85</td>
+            <td><strong>Fecha Devolucion:&nbsp;&nbsp; </strong>23/78/98</td>
+            <td><strong>Tipo de Prestamo:&nbsp;&nbsp; </strong>En casa</td>
+        </tr>
+    </table>
+    <hr />
+    <p style="text-align:justify">
+        El libro/libros que estoy solicitando a la Biblioteca del CUNOR se encuentra en buen estado, las fechas de préstamo y de entrega se encuentran indicadas en la parte superior, yo @Html.DisplayFor(model => model.CodUsuario) me comprometo  a cumplirlas y evitar las sanciones correspondientes. En caso de maltrato o extravió del libro/libros aquí mencionado tendré que cubrir la totalidad del costo para que sea repuesto.
+        Costo por día de retraso Q 2.00
+    </p>
+    <center>
+        <p>_______________________________________________</p>
+        <p> Firma del Lector </p>
+        <p  align="right">Boleta Generada el: <strong id="fechayhora"></strong></p>
+    </center>
+
+  
+   
+</body>
+
+<script>
+    showTime();
+    function showTime() {
+        myDate = new Date();
+        days = myDate.getDate();
+        month = myDate.getMonth()+1;
+        hours = myDate.getHours();
+        minutes = myDate.getMinutes();
+        seconds = myDate.getSeconds();
+        if (days < 10) days = "0" + days;
+        if (hours < 10) hours = 0 + hours;
+        if (hours < 10) month = "0" + hours;
+        if (minutes < 10) minutes = "0" + minutes;
+        if (seconds < 10) seconds = "0" + seconds;
+
+        $("#fechayhora").text(days + "/" + month + "/" + myDate.getFullYear() + " " + hours + ":" + minutes + ":" + seconds);
+        setTimeout("showTime()", 1000);
+    }
+</script>
+
+
+

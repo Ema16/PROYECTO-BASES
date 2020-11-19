@@ -1,113 +1,145 @@
-﻿@model IEnumerable<BibliotecaCUNOR.Models.Usuario>
+﻿@model BibliotecaCUNOR.Models.ModelosIndex
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Inicio</title>
 
-@{
-    ViewData["Title"] = "Index";
-}
+</head>
 
-<h1>Index</h1>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Inicio</small></h1>
+        </div>
+    </div>
+    <section class="full-reset text-center" style="padding: 40px 0;">
+        @foreach (var item in Model.Bibliotecarios)
+        {
+            @if (User.IsInRole("Bibliotecario"))
+            {<!--BIBLIOTECARIO-->
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-face"></i></div>
+                    <div class="tile-name all-tittles">Autores</div>
+                    <div class="tile-num full-reset">@item.countAutores</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-book"></i></div>
+                    <div class="tile-name all-tittles">Libros</div>
+                    <div class="tile-num full-reset">@item.countLibros</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-time-restore"></i></div>
+                    <div class="tile-name all-tittles" style="width: 90%;">Total de Devoluciones pendientes</div>
+                    <div class="tile-num full-reset">@item.countDevPen</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-calendar"></i></div>
+                    <div class="tile-name all-tittles">Total de Préstamos</div>
+                    <div class="tile-num full-reset">@item.countPresGe</div>
+                </article> <!--BIBLIOTECARIO-->}}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CorreoElectronico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contraseña)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivarUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodCargo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecContraseña)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodCarreraNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodRolusuarioNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodTipousuarioNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contraseña)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivarUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodCargo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecContraseña)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodCarreraNavigation.Carrera1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodRolusuarioNavigation.Rol)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodTipousuarioNavigation.Tipo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CodUsuario">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CodUsuario">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CodUsuario">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        @foreach (var item in Model.Administradors)
+        {
+            @if (User.IsInRole("Administrador"))
+            {<!--ADMINISTRADOR-->
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-face"></i></div>
+                    <div class="tile-name all-tittles">Administradores</div>
+                    <div class="tile-num full-reset">@item.countAdmin</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-accounts"></i></div>
+                    <div class="tile-name all-tittles">Estudiantes</div>
+                    <div class="tile-num full-reset">@item.countEstu</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-male-female"></i></div>
+                    <div class="tile-name all-tittles" style="width: 90%;">Personal Administrativo</div>
+                    <div class="tile-num full-reset">@item.countPersonal</div>
+                </article> <!--ADMINISTRADOR-->}}
+
+
+        @if (User.IsInRole("Inventarista") || User.IsInRole("Inventarista Trabajo"))
+        {<!--INVENTARISTA-->
+            @foreach (var item in Model.Inventaristas)
+            {
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-pages"></i></div>
+                    <div class="tile-name all-tittles">Trabajo de Graduacion</div>
+                    <div class="tile-num full-reset">@item.countTraba</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-accounts"></i></div>
+                    <div class="tile-name all-tittles">Asesores</div>
+                    <div class="tile-num full-reset">@item.countAsesores</div>
+                </article>
+
+
+                @if (User.IsInRole("Inventarista"))
+                {
+                    <article class="tile">
+                        <div class="tile-icon full-reset"><i class="zmdi zmdi-truck"></i></div>
+                        <div class="tile-name all-tittles">Autores</div>
+                        <div class="tile-num full-reset">@item.countAutor</div>
+                    </article>
+                    <article class="tile">
+                        <div class="tile-icon full-reset"><i class="zmdi zmdi-book"></i></div>
+                        <div class="tile-name all-tittles">Libros</div>
+                        <div class="tile-num full-reset">@item.countLibro</div>
+                    </article>
+                    <article class="tile">
+                        <div class="tile-icon full-reset"><i class="zmdi zmdi-trending-up"></i></div>
+                        <div class="tile-name all-tittles" style="width: 90%;">Reportes y Estadísticas</div>
+                        <div class="tile-num full-reset">&nbsp;</div>
+                    </article>
+                } <!--INVENTARISTA-->
+            }
+        }
+
+        @foreach (var item in Model.Estudiantes)
+        {
+            @if (User.IsInRole("Estudiante"))
+            {<!--ESTUDIANTE-->
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-settings"></i></div>
+                    <div class="tile-name all-tittles">Perfil</div>
+                    <div class="tile-num full-reset">7</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-time-restore"></i></div>
+                    <div class="tile-name all-tittles" style="width: 90%;">Devoluciones pendientes</div>
+                    <div class="tile-num full-reset">@item.countDevPen</div>
+                </article>
+                <article class="tile">
+                    <div class="tile-icon full-reset"><i class="zmdi zmdi-calendar"></i></div>
+                    <div class="tile-name all-tittles">Préstamos Realizado</div>
+                    <div class="tile-num full-reset">@item.countPres</div>
+                </article> <!--ESTUDIANTE-->}}
+        <!--
+        <article class="tile">
+            <div class="tile-icon full-reset"><i class="zmdi zmdi-male-alt"></i></div>
+            <div class="tile-name all-tittles">docentes</div>
+            <div class="tile-num full-reset">11</div>
+        </article>
+        <article class="tile">
+            <div class="tile-icon full-reset"><i class="zmdi zmdi-assignment-account"></i></div>
+            <div class="tile-name all-tittles">secciones</div>
+            <div class="tile-num full-reset">17</div>
+        </article>
+            -->
+    </section>
+    @if (ViewBag.mensaje != null)
+    {
+
+        <script>
+            swal(
+                'Cuenta Creada!',
+                'Te Damos la cordial Bienvenida a BIBLIOTECA CUNOR!',
+                'success'
+            );
+        </script>
+
+    }
+
+</body>
+</html>

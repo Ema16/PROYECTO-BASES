@@ -1,146 +1,219 @@
 ﻿@model BibliotecaCUNOR.Models.Libro
+<!--
+* Copyright 2018 Carlos Eduardo Alfaro Orellana
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>LIBROS</title>
+    <!--CHOSEN-->
+    <script src="~/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/chosen/chosen.css" />
+</head>
 
-@{
-    ViewData["Title"] = "Create";
-}
 
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Añadir libro</small></h1>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/flat-book.png" alt="pdf" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido a la sección para agregar nuevos libros a la biblioteca, deberas de llenar todos los campos para poder registrar el libro
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <ol class="breadcrumb">
+                    <li class="active">Nuevo Libro</li>
+                    <li><a href="~/Libroes/Listlibros">Listado de Libros</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
 
-
-<h1>Create</h1>
-
-<h4>Libro</h4>
-<hr />
-<div class="row">
     <div id="modal-placeholder"></div>
-    <div class="col-md-10">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <h5>Detalles del Libro</h5>
-                <hr />
-                <div class="form-row m-2">
-                    <div class="col-lg">
-                        <label asp-for="Titulo" class="control-label"></label>
-                        <input asp-for="Titulo" class="form-control" />
-                        <span asp-validation-for="Titulo" class="text-danger"></span>
+    <div class="container-fluid">
+        <div class="container-flat-form">
+            <div class="title-flat-form title-flat-blue">Nuevo libro</div>
+            <form asp-action="Create" class="form-padding" style="padding-left:5%; padding-right:5%;">
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-account-box"></i> &nbsp; Información básica</legend><br>
                     </div>
-                    <div class="col-lg">
-                        <label asp-for="Clave" class="control-label"></label>
-                        <input asp-for="Clave" class="form-control" />
-                        <span asp-validation-for="Clave" class="text-danger"></span>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Clave" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el código correlativo del libro" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" +
+                                   title="Escribe el código correlativo del libro, solamente números">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Clave del Libro</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Titulo" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el título o nombre del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el título o nombre del libro">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Título</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <span>Autor/Autores</span>
+
+                            <select id="nombreautor" asp-for="MultiAutores" class="tooltips-general material-control" data-toggle="tooltip" required="" placeholder="Seleccionar el Autor/Autores" data-placement="top" title="Elige un Autor como minimo" asp-items="ViewBag.CodAutor" multiple>
+                            </select>
+                            <span asp-validation-for="MultiAutores" class="text-danger"></span>
+                            <!--
+                    <button style="float:right" type="button" data-toggle="ajax-model" data-target="#add-editor"
+                            data-url="@Url.Action("Create","Autors")">
+                        <img src="~/imagenes/agregar-usuario.png" width="40" height="40" title="Agregar Nuevo Autor" />
+                    </button>
+                        -->
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <span>Editorial</span>
+                            <select id="editorial" asp-for="CodEditorial" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" title="Elige el Editorial del Libro" asp-items="ViewBag.CodEditorial">
+                                <option value="" disabled="" selected="">Selecciona la editorial del libro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <span>Edicion</span>
+                            <select id="edicionLibro" name="EdicionLibro[0].CodEdicion" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" title="Elige una edicion del libro" asp-items="ViewBag.CodEdicion">
+                                <option value="" disabled="" selected="">Selecciona las edicion del libro</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-bookmark-outline"></i> &nbsp; Categoría</legend><br>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="group-material">
+                            <span>Categoría</span>
+                            <select id="clasificacion" asp-for="CodClasificacion" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" title="Elige la categoría del libro" asp-items="ViewBag.CodClasificacion">
+                                <option value="" disabled="" selected="">Selecciona una categoría</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-label"></i> &nbsp; Otros datos</legend><br>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Paginas" type="text" class="material-control tooltips-general" placeholder="Escribe aquí las paginas del libro" required="" pattern="[0-9]{1,4}" maxlength="4" data-toggle="tooltip" data-placement="top" title="Solamente números, sin espacios">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Paginas</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Volumen" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el volumen del libro (Opcional)" pattern="[0-9]{1,7}" maxlength="3" data-toggle="tooltip" data-placement="top" title="Volumen del libro">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Volumen</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Ejemplares" type="text" class="material-control tooltips-general" placeholder="Escribe aquí la cantidad de libros que registraras (si hubieran mas de 1)" pattern="[0-9]{1,7}" maxlength="7" data-toggle="tooltip" data-placement="top" title="¿Cuántos ejemplares registraras?">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Ejemplares</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-map"></i> &nbsp; Estado físico y valor</legend><br>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input name="Observacion[0].Observacion1" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el estado fisico del Libro" required="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Estado del libro">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Estado/Observaciones</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Costo" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el precio estimado del libro (si lo tuviera)" pattern="[0-9]{1,7}" maxlength="7" data-toggle="tooltip" data-placement="top" title="Solamente numero, sin espacion y enteros">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Costo Estimado</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        </p>
                     </div>
                 </div>
-                <div class="form-row mb-2">
-                    <div class="col-lg">
-                        <label asp-for="CodClasificacion" class="control-label"></label>
-                        <select asp-for="CodClasificacion" class="form-control" asp-items="ViewBag.CodClasificacion"></select>
-                    </div>
-                    <div class="col-lg">
-                        <label asp-for="Ejemplares" class="control-label"></label>
-                        <input asp-for="Ejemplares" class="form-control" />
-                        <span asp-validation-for="Ejemplares" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
+            </form>
+            @if (ViewBag.mensajeLi != null)
+            {
 
-            <div class="form-group">
-                <h5>Detalles del Autor y Edicion</h5>
-                <hr />
-                <div class="form-row mb-2">
-                    <div class="col-lg">
-                        <label class="control-label">Nombres Autor</label>
-                        <select id="nombreautor" name="LibroAutor[0].Nombre" class="form-control" asp-items="ViewBag.CodAutor"></select>
-                        <span class="font-italic text-muted"></span>
-                        <button type="button" class="btn btn-primary" data-toggle="ajax-model" data-target="#add-editorial"
-                                data-url="@Url.Action("Create","Autors")">
-                            Agregar Nuevo Editorial
-                        </button>
-                    </div>
-                    <div class="col-lg">
-                        <label class="control-label">Apellidos Autor</label>
-                        <select name="LibroAutor[0].Apellido" class="form-control" asp-items="ViewBag.CodAutor"></select>
-                        <span class="font-italic text-muted"></span>
-                    </div>
-                </div>
+                <script>
+                    swal(
+                        'Registro Exitoso!',
+                        'Libro Registrado con Exito!',
+                        'success'
+                    );
+                </script>
 
-                <div class="form-row mb-2">
-                    <div class="col-lg">
-                        <label asp-for="CodEditorial" class="control-label"></label>
-                        <select id="editorial" asp-for="CodEditorial" class="form-control" asp-items="ViewBag.CodEditorial"></select>
-                    </div>
+            }
 
-                    <div class="col-lg">
-                        <label class="control-label">Edicion del Libro</label>
-                        <select id="edicionLibro" name="EdicionLibro[0].Edicion1" class="form-control" asp-items="ViewBag.CodEdicion"></select>
-                        <span class="font-italic text-muted">Seleccione una Carrera</span>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <h5>Detalles Adicionales</h5>
-                <hr />
-                <div class="form-row mb-2">
-                    <div class="col-lg">
-                        <label asp-for="Estado" class="control-label"></label>
-                        <input asp-for="Estado" class="form-control" />
-                        <span asp-validation-for="Estado" class="text-danger"></span>
-                    </div>
-                    <div class="col-lg">
-                        <label asp-for="Costo" class="control-label"></label>
-                        <input asp-for="Costo" class="form-control" />
-                        <span asp-validation-for="Costo" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row mb-2">
-                    <div class="col-lg">
-                        <label asp-for="Paginas" class="control-label"></label>
-                        <input asp-for="Paginas" class="form-control" />
-                        <span asp-validation-for="Paginas" class="text-danger"></span>
-                    </div>
-                    <div class="col-lg">
-                        <label asp-for="Volumen" class="control-label"></label>
-                        <input asp-for="Volumen" class="form-control" />
-                        <span asp-validation-for="Volumen" class="text-danger"></span>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-            <div class="form-group">
-                <label asp-for="FechaRegistro" class="control-label"></label>
-                <input asp-for="FechaRegistro" class="form-control" />
-                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="CodUsuario" class="control-label"></label>
-                <select asp-for="CodUsuario" class="form-control" asp-items="ViewBag.CodUsuario"></select>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
+</body>
+</html>
+<!--Scripts-->
+<script>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
-    @section scripts{
-
-        <!--Scripts-->
-        <script type="text/javascript">
-            $(function () {
-                //Lista normal
-                $("#nombreautor,#editorial,#edicionLibro").chosen();
+    $(function () {
+        $('#nombreautor').chosen(
+            { no_results_text: '<button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="ajax-model" data-url="@Url.Action("Create","Autors")"><span class="zmdi zmdi-account-add"></span>&nbsp;&nbsp;Agregar</button>', width: "100%" }).change(function () {
+                //  $("#contenidolibros").empty();
+                // var ddlValue = $(this).find(':selected').text();
+                // alert("veamos " + ddlValue);
+                $.getJSON('/Prestamo/ObtenerInformacionLibro', { idLibro: $('#nombreautor').val() }, function (data) {
+                    //   alert("Prueba " + $('#nombreautor').val())
+                    $.each(data, function (index, value) {
+                        $("#contenidolibros")
+                            .append("<tr><td>" + value.titulo + "</td><td>" + value.clave + "</td><td>" + value.ejemplares + "</td></tr>");
+                    });
+                });
             });
-        </script>
-        <!--Scripts-->
-    </div>
-}
+        //Lista normal
+        $("#clasificacion").chosen(
+        { width: "100%" });
+        $("#editorial").chosen(
+            { no_results_text: '<button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="ajax-model" data-url="@Url.Action("Create","Editorials")">Agregar</button>', width: "100%" });
+        $("#edicionLibro").chosen(
+            { no_results_text: '<button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="ajax-model" data-url="@Url.Action("Create","Edicions")">Agregar</button>', width: "100%" });
+
+        $("#modal-placeholder").modal("show");
+    });
+
+
+</script>
+<!--Scripts-->

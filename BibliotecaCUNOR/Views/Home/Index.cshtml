@@ -1,14 +1,680 @@
-﻿@{
+﻿@model BibliotecaCUNOR.Models.Usuario
+@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Biblioteca CUNOR</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-<div class="text-center">
-    @{
-        if (TempData.Peek("Mensaje") != null)
+    <!-- Favicons -->
+    <link href="~/diseño/img/favicon.png" rel="icon" asp-append-version="true">
+    <link href="~/diseño/img/apple-touch-icon.png" rel="apple-touch-icon" asp-append-version="true">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/registro/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Yantramanav&display=swap" rel="stylesheet">
+
+    <!--BOOTSTRAP-->
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Libraries CSS Files -->
+    <link href="~/diseño/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/diseño/lib/animate/animate.min.css" rel="stylesheet" asp-append-version="true">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/diseño/css/style.css" rel="stylesheet" asp-append-version="true">
+
+    <!--SWEETALERT-->
+    <script src="~/js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" href="~/css/sweet-alert.css">
+
+    <!--LOGIN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+    ============================-->
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <a href="https://www.usac.edu.gt/index.php"><img src="~/diseño/img/logo.png" alt="" title="Pagina USAC" /></img></a>
+                <!-- Uncomment below if you prefer to use a text logo -->
+                <!--<h1><a href="#hero">Regna</a></h1>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="#hero">INICIO</a></li>
+                    <li><a href="#registrar">REGISTRATE</a></li>
+                    <li><a href="#team">INICIAR SESION</a></li>
+                    <li><a href="#services">NUESTRAS CARRERAS</a></li>
+                    <li><a href="#portfolio">GALERIA</a></li>
+                    <li class="menu-has-children">
+                        <a href="">INFORMACION</a>
+                        <ul>
+                            <li><a href="#">Aspirante</a></li>
+                            <li class="menu-has-children">
+                                <a href="#">Drop Down 2</a>
+                                <ul>
+                                    <li><a href="#">Deep Drop Down 1</a></li>
+                                    <li><a href="#">Deep Drop Down 2</a></li>
+                                    <li><a href="#">Deep Drop Down 3</a></li>
+                                    <li><a href="#">Deep Drop Down 4</a></li>
+                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Antecedentes</a></li>
+                            <li><a href="#">Pruebas Especificas</a></li>
+                            <li><a href="#">PAP</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">CONTACTANOS</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+    <!--==========================
+      Hero Section
+    ============================-->
+
+
+
+    <section id="hero">
+        <div class="hero-container">
+            <h1>#QUEDATE EN CASA</h1>
+            <h2>Biblioteca Virtual del Centro Universitario del Norte</h2>
+            <a href="#about" class="btn-get-started">¿Quienes Somos?</a>
+        </div>
+    </section><!-- #hero -->
+
+    <main id="main">
+
+        <!--==========================
+          About Us Section
+        ============================-->
+        <section id="about">
+            <div class="container">
+                <div class="row about-container">
+
+                    <div class="col-lg-6 content order-lg-1 order-2">
+                        <h2 class="title">CENTRO UNIVERSITARIO DEL NORTE</h2>
+                        <p>
+                            En su carácter de universidad estatal le corresponde con exclusividad dirigir, organizar y desarrollar la educación superior y la educación estatal, así como la difusión de la cultura en
+                            todas sus manifestaciones. Promoverá por todos los medios a su alcance la investigación en todas las esferas del saber humano.
+                        </p>
+
+                        <div class="icon-box wow fadeInUp">
+                            <div class="icon"><i class="fa fa-facebook-official"></i></div>
+                            <h4 class="title"><a href="https://www.facebook.com/paginacunor" target="_blank">Facebook</a></h4>
+                            <p class="description">Pasa dejando tu Like a nuestra pagina oficial en Facebook</p>
+                        </div>
+
+                        <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon"><i class="fa fa-instagram"></i></div>
+                            <h4 class="title"><a href="https://www.instagram.com/paginacunor/" target="_blank">Instagram</a></h4>
+                            <p class="description">Pasa dejando tu Like a nuestra pagina oficial de Instagram</p>
+                        </div>
+
+                        <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon"><i class="fa fa-twitter"></i></div>
+                            <h4 class="title"><a href="">Twiter</a></h4>
+                            <p class="description">Pasa dejando tu Like a nuestra pagina oficial en Twitter</p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
+                </div>
+
+            </div>
+        </section><!-- #about -->
+        <!--SECTION REGISTRO-->
+        <section id="registrar">
+            <div class="registrar-container">
+                <div class="container wow fadeInUp">
+                    <div class="container">
+                        <div class="signup-content">
+                            <form asp-action="Create" asp-controller="Usuarios" id="signup-form" class="signup-form">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="text-center w-75 m-auto">
+                                    <a href="#">
+                                        <span class="d-none d-sm-block">
+                                            <img src="~/imagenes/índice.jpg" />
+                                        </span>
+                                    </a>
+                                    <p class="font-weight-bold mb-4 mt-3 h6"><strong>Crea tu acceso a la Biblioteca CUNOR</strong></p>
+                                </div>
+                                <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                <label>Campos Obligatorios</label>
+                                <hr />
+
+                                <div class="form-row mb-2">
+                                    <div class="col-lg">
+                                        <label>Nombre</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Nombre" type="text" class="form-input" id="name" placeholder="Nombres" required="" />
+                                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg">
+                                        <label>Apellido</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Apellido" type="text" class="form-input" id="name" placeholder="Apellidos" required="" />
+                                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <div class="col-lg">
+                                        <label>Usuario</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Usuario1" class="form-input" id="usuario" placeholder="Registro Academico/Registro Personal" required="" />
+                                        <span class="bar"></span>
+                                        <span class="highlight"></span>
+                                        <span asp-validation-for="Usuario1" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg">
+                                        <label>Correo Electronico</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="CorreoElectronico" type="email" class="form-input" id="email" placeholder="Ingresa tu correo" required="" />
+                                        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row mb-2">
+                                    <div class="col-lg">
+                                        <label>Contraseña</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Contraseña" type="text" class="form-input" id="password" placeholder="Contraseña 8 caracteres" required="" pattern="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$" title="La contraseña no cumple" />
+                                        <span asp-validation-for="Contraseña" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg">
+                                        <label>Confirmar Contraseña</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Contraseña2" type="password" class="form-input" id="re_password" placeholder="Repite tu contraseña" required="" />
+                                        <span asp-validation-for="Contraseña2" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row mb-2">
+                                    <div class="col-lg">
+                                        <label>Telefono</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <input asp-for="Telefono" class="form-input" id="telefono" placeholder="Numero de telefono" required="" />
+                                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg">
+                                        <label>¿Usted es?</label>
+                                        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+                                        <select id="tipousuario" asp-for="CodTipousuario" class="form-input" asp-items="ViewBag.CodTipousuario">
+                                            <option value="" disabled="" selected="">...</option>
+                                        </select>
+                                        <span asp-validation-for="CodTipousuario" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div id="carreracunor" class="form-group">
+                                    <label>Carrera</label>
+                                    <select id="carreracunor1" asp-for="CodCarrera" class="form-input" asp-items="ViewBag.CodCarrera" required="" title="Seleccione1 su carrera">
+                                        <option value="" disabled="" selected="">Selecciona su carrera...</option>
+                                    </select>
+                                    <span asp-validation-for="CodCarrera" class="text-danger"></span>
+                                </div>
+
+
+
+                                <div class="form-group" style="padding-left:20%; padding-right:20%">
+                                    <input type="submit" name="submit" id="submit" class="form-submit" value="Registrarse" />
+                                </div>
+                            </form>
+                            <p class="loginhere">
+                                Ya tienes tu acceso ? <a href="#team" class="loginhere-link">Inicia Sesion</a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- #portfolio -->
+
+        <section id="team">
+            <div id="logreg-forms">
+                <form class="form-signin" asp-action="Login" asp-controller="Usuarios">
+                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> BIBLIOTECA CUNOR</h1>
+                    <p style="text-align:center"> INICIAR SESION  </p>
+                    @if (ViewBag.Mensaje != null)
+                    {
+                        <center>
+                            <div class="text-danger">
+                                <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-exclamation-triangle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M7.938 2.016a.146.146 0 0 0-.054.057L1.027 13.74a.176.176 0 0 0-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 0 0 .066-.017.163.163 0 0 0 .055-.06.176.176 0 0 0-.003-.183L8.12 2.073a.146.146 0 0 0-.054-.057A.13.13 0 0 0 8.002 2a.13.13 0 0 0-.064.016zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                                    <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                                </svg>
+                                @ViewBag.Mensaje
+                            </div>
+                        </center>
+                    }
+
+                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Correo Electronico" required="">
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="">
+
+                    <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>Iniciar Sesion</button>
+                    <center>
+                        <a href="#" id="forgot_pswd">Olvide mi Contraseña</a>
+                    </center>
+                    <hr>
+                    <a href="#registrar" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Registrate</a>
+                </form>
+
+                <form asp-action="StartRecovery" asp-controller="Usuarios" class="form-reset">
+                    <input type="email" name="correo" id="resetEmail" class="form-control" placeholder="Correo Electronico" required="">
+                    <button class="btn btn-primary btn-block" type="submit">Enviar Correo</button>
+                    <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Regresar</a>
+                </form>
+                <br>
+
+            </div>
+        </section><!-- #call-to-action -->
+        <!--==========================
+          Services Section
+        ============================-->
+        <section id="services">
+            <div class="container wow fadeIn">
+                <div class="section-header">
+                    <h3 class="section-title">CARRERAS</h3>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-desktop"></i></a></div>
+                            <h4 class="title"><a href="">Ingenieria en Sistemas</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-road"></i></a></div>
+                            <h4 class="title"><a href="">Ingenieria Civil</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-paper-plane"></i></a></div>
+                            <h4 class="title"><a href="">Ingenieria Industrial</a></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-book"></i></a></div>
+                            <h4 class="title"><a href="">Derecho</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-sort-numeric-asc"></i></a></div>
+                            <h4 class="title"><a href="">Auditoria</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-horse"></i></a></div>
+                            <h4 class="title"><a href="">Agronomia</a></h4>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- #services -->
+        <!--==========================
+          Portfolio Section
+        ============================-->
+        <section id="portfolio">
+            <div class="container wow fadeInUp">
+                <div class="section-header">
+                    <h3 class="section-title">Galeria</h3>
+                    <p class="section-description">En el Centro Universitario del Norte tenemos actividades socioculturales tales como</p>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <ul id="portfolio-flters">
+                            <li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">Todo</li>
+                            <li data-filter=".filter-app">Universidad</li>
+                            <li data-filter=".filter-card">Instalaciones</li>
+                            <li data-filter=".filter-logo">Alumnos</li>
+                            <li data-filter=".filter-web">Actividades</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" id="portfolio-wrapper">
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-app">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/app1.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Valores</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-web">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/web2.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>San Carlistas</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-app">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/app3.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Cunoristas</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-card">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/card1.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Armonior</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-card">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/card2.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Compañerismo</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-web">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/web3.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Respeto</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-card">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/card3.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Perseverancia</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-app">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/app2.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Humildad</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/logo1.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Trabajo en Equipo</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/logo3.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Solidaridad</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-web">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/web1.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Deportes</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
+                        <a href="">
+                            <img src="~/diseño/img/portfolio/logo2.jpg" alt="">
+                            <div class="details">
+                                <h4></h4>
+                                <span>Paz</span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- #portfolio -->
+        <!--==========================
+          Contact Section
+        ============================-->
+        <section id="contact">
+            <div class="container wow fadeInUp">
+                <div class="section-header">
+                    <h3 class="section-title">CONTACTANOS</h3>
+                    <p class="section-description">Si deseas mas informacion sobre nuestras carreras dejanos tu mensaje lo estaremos leyendo</p>
+                </div>
+            </div>
+
+            <!-- Uncomment below if you wan to use dynamic maps -->
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.36693513897!2d-90.39203398514923!3d15.464682689256879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858a46dcb32a7f7d%3A0xb77c2c65c885495b!2sCentro%20Universitario%20del%20Norte!5e0!3m2!1ses!2sgt!4v1603516239939!5m2!1ses!2sgt" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+            <div class="container wow fadeInUp mt-5">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-3 col-md-4">
+
+                        <div class="info">
+                            <div>
+                                <i class="fa fa-map-marker"></i>
+                                <p>Alta Verapaz<br>Km 210 16001-Cobán, Guatemala</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-envelope"></i>
+                                <p>coordinacion@cunor.usac.edu.gt</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-phone"></i>
+                                <p>7956 6600</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5 col-md-8">
+                        <div class="form">
+                            <div id="sendmessage">Ingresa tu mensaje. Gracias!</div>
+                            <div id="errormessage"></div>
+                            <form action="" method="post" role="form" class="contactForm">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Tu Nombre" data-rule="minlen:4" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" data-rule="email" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="minlen:4" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" rows="5" data-rule="required" placeholder="Mensaje"></textarea>
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- #contact -->
+
+        @if (ViewBag.mensaje1 != null)
         {
-            <div class="alert alert-danger">@TempData.Peek("Mensaje") </div>
+
+            <script>
+            swal(
+                'Confirmacion!',
+                'Te hemos Enviado un Correo Electronico!',
+                'success'
+            );
+            </script>
+
         }
+
+
+    </main>
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Carreras de Ingenieria</strong>. Todos los Derechos Reservados
+            </div>
+            <div class="credits">
+                Diseñado por <a href="https://www.facebook.com/ingenieria.cunor" target="_blank">Ingenieria en Ciencias y Sistemas</a>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="~/diseño/lib/jquery/jquery.min.js"></script>
+    <script src="~/diseño/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/diseño/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/diseño/lib/easing/easing.min.js"></script>
+    <script src="~/diseño/lib/wow/wow.min.js"></script>
+    <script src="~/diseño/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/diseño/lib/counterup/counterup.min.js"></script>
+    <script src="~/diseño/lib/superfish/hoverIntent.js"></script>
+    <script src="~/diseño/lib/superfish/superfish.min.js"></script>
+    <script src="~/registro/js/main.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="~/diseño/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/diseño/js/main.js"></script>
+
+    <!--VALIDACION-->
+    <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!--LOGIN-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+<!--Scripts-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#carreracunor').hide();
+        $('#tipousuario').change(function () {
+            var ddlValue = $(this).find(':selected').text();
+            if (ddlValue == "Estudiante") {
+                // show time div, hide fromTo div
+                $('#carreracunor').show();
+            }
+            else if (ddlValue == "Empleado CUNOR") {
+                // show fromTo div, hide time div
+                $('#carreracunor1').prop('selectedIndex', 0);
+                $('#carreracunor').hide();
+                
+            }
+        });
+    });
+</script>
+<script>
+    function toggleResetPswd(e) {
+        e.preventDefault();
+        $('#logreg-forms .form-signin').toggle() // display:block or none
+        $('#logreg-forms .form-reset').toggle() // display:block or none
     }
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+    function toggleSignUp(e) {
+        e.preventDefault();
+        $('#logreg-forms .form-signin').toggle(); // display:block or none
+        $('#logreg-forms .form-signup').toggle(); // display:block or none
+    }
+
+    $(() => {
+        // Login Register Form
+        $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
+        $('#logreg-forms #cancel_reset').click(toggleResetPswd);
+        $('#logreg-forms #btn-signup').click(toggleSignUp);
+        $('#logreg-forms #cancel_signup').click(toggleSignUp);
+    })
+
+    window.onload = function () {
+        $("#unload").fadeOut();
+        $("body").removeClass("hidden1");
+    }
+
+</script>

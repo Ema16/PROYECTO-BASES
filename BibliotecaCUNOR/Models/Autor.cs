@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BibliotecaCUNOR.Models
 {
@@ -13,12 +15,18 @@ namespace BibliotecaCUNOR.Models
 
         public int CodAutor { get; set; }
 
-        [Required]
         public string Nombre { get; set; }
 
-        [Required]
         public string Apellido { get; set; }
 
+        [Display(Name = "Full Name Autor")]
+        public string FullName
+        {
+            get
+            {
+                return Nombre + " " + Apellido;
+            }
+        }
         public virtual ICollection<LibroAutor> LibroAutor { get; set; }
     }
 }

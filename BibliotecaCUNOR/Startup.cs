@@ -28,13 +28,15 @@ namespace BibliotecaCUNOR
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<bd_bibliotecaContext>(options => options.UseNpgsql("Host=192.168.99.100;Database=bd_biblioteca;Username=postgres;Password=emanuelamperez"));
+            services.AddDbContext<bd_bibliotecaContext>(options => options.UseNpgsql("Host=159.65.75.169;Database=bd_biblioteca;Username=postgres;Password=emanuelamperez"));
             //Par a el Login_______________________________________________________
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(config =>
                 {
                     config.Cookie.Name = "Identity.Cookie";
                     config.LoginPath = "/Home/Authenthicate";
+                    config.LogoutPath = "/Home/Logout";
+                    config.AccessDeniedPath = "/Home/Authenthicate1";
                 });
             //______________________________________________________
 
@@ -43,7 +45,7 @@ namespace BibliotecaCUNOR
             {
                 var policy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
-                .RequireRole("Administrador", "Usuario")
+                .RequireRole("Administrador", "Estudiante", "Inventarista Trabajo", "Bibliotecario", "Inventarista")
                 .Build();
             });
 
@@ -62,6 +64,7 @@ namespace BibliotecaCUNOR
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithRedirects("~/Home/Error1?code={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -72,6 +75,7 @@ namespace BibliotecaCUNOR
             // app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {
@@ -79,6 +83,9 @@ namespace BibliotecaCUNOR
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+         //  Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "..\\Rotativa\\");
+           Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "/usr/local/bin");
         }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model BibliotecaCUNOR.Models.Prestamo
+@{
+    ViewData["Title"] = "DetalleDevuelto";
+    Layout = null;
+}
+
+
+
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalle del Prestamo </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <ol class="breadcrumb">
+                    <li><a href="#" class="close" data-dismiss="modal">Devoluciones Pendientes</a></li>
+                    <li class="active">Prestamo de : <strong>@(Model.CodUsuarioNavigation.Nombre+" "+ @Model.CodUsuarioNavigation.Apellido)</strong></li>
+                </ol>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos del Usuario</div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Datos del Usuario</dt>
+                            <dd>@Model.CodUsuarioNavigation.Nombre @Model.CodUsuarioNavigation.Apellido</dd>
+                            <dt>Telefono</dt>
+                            <dd>@Model.CodUsuarioNavigation.Telefono</dd>
+                            <dt>Carnet</dt>
+                            <dd>@Model.CodUsuarioNavigation.Usuario1</dd>
+                            <dt>Correo Electronico</dt>
+                            <dd>@Model.CodUsuarioNavigation.CorreoElectronico</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informacion del Prestamo</div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Fecha de Prestamo</dt>
+                            <dd>@Model.FechaPrestamo</dd>
+                            <dt>Fecha Devolucion</dt>
+                            <dd>@Model.FechaDevolucion</dd>
+                            <dt>Dias de Atraso</dt>
+                            <dd>@Model.DiasAtraso</dd>
+                            <dt>Mora Generado</dt>
+                            <dd>Q.@Model.Mora.00</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Libro/Libros Prestados</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            @foreach (var item in Model.DetPrestamo)
+                            {
+                                if (item.Estado.Equals("Perdido"))
+                                {
+                                    <li class="list-group-item" style="background:orangered">
+                                        @Html.DisplayFor(modelItem => item.CodLibroNavigation.Titulo) - @Html.DisplayFor(modelItem => item.Estado)
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item" style="background:lawngreen">
+                                        @Html.DisplayFor(modelItem => item.CodLibroNavigation.Titulo) - @Html.DisplayFor(modelItem => item.Estado)
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

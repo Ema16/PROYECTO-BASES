@@ -1,0 +1,119 @@
+﻿@model IEnumerable<BibliotecaCUNOR.Models.Libro>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+
+@{
+    ViewData["Title"] = "Busqueda";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Buscar libro</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+    <link href="~/buscador/css/main.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .btn-get-started {
+            font-family: "Poppins", sans-serif;
+            /*text-transform: uppercase;*/
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 50px;
+            transition: 0.5s;
+            margin: 10px;
+            border: 2px solid #000000;
+            color: #0000FF;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="page-header">
+            <form asp-controller="Libroes" asp-action="Busqueda">
+                <fieldset>
+                    <div class="inner-form" style="padding-left:15px">
+                        <div class="input-field">
+
+                            <button class="btn-search" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                </svg>
+                            </button>
+                            <input id="search" type="text" class="form-control" value="@ViewData["Getemployeedetails"]" name="bookName" />
+                        </div>
+                    </div>
+                    </fieldset>
+            </form>
+        </div>
+
+
+    <div id="modal-placeholder"></div>
+    <div class="container-flat-form">
+
+        <div class="card-body row no-gutters align-items-center">
+            <div class="container-fluid" style="padding-left:5%; padding-right:5%">
+                <br>
+                <h3 class="text-center all-tittles">resultados de la búsqueda</h3>
+
+                @if (Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="media media-hover">
+                            <div class="media-left media-middle">
+                                <a href="#!" class="tooltips-general" data-toggle="tooltip" data-placement="right" title="Más información del libro">
+                                    <img class="media-object" src="~/assets/img/book.png" alt="Libro" width="48" height="48">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="#" data-toggle="ajax-model" data-target="#detail-trabajo" data-url="@Url.Action($"DetailsLibro/{item.CodLibro}","Libroes")"><strong></strong> @Html.DisplayFor(modelItem => item.Titulo)</a>
+                                </h4>
+                                <div class="pull-left">
+                                    <strong>
+                                        @Html.DisplayFor(modelItem => item.Titulo)<br>
+                                        <strong>@Html.DisplayFor(modelItem => item.Clave)<br>
+                                </div>
+                                <p class="text-center pull-right">
+                                    <a href="#!" data-toggle="ajax-model" data-target="#detail-libro" data-url="@Url.Action($"DetailsLibro/{item.CodLibro}","Libroes")" class="btn btn-info btn-xs" style="margin-right: 10px;"><i class="zmdi zmdi-info-outline"></i> &nbsp;&nbsp; Más información</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!--
+                            <a asp-action="Edit" asp-route-id="@item.CodLibro">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.CodLibro">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.CodLibro">Delete</a>
+                        -->}
+                }
+                else
+                {
+
+                    <h2 class="text-center"><i class="zmdi zmdi-mood-bad zmdi-hc-5x"></i><br><br>Lo sentimos, no hemos encontrado ningún libro con el nombre <strong>@ViewData["Busqueda"] </strong> en el sistema</h2>
+
+
+                }
+
+
+            <center>
+                @if (ViewBag.Titulo != null || ViewBag.Titulo != "" || ViewBag.NombreAutor != null || ViewBag.NombreAutor != "" || ViewBag.NombreInstitucion != null || ViewBag.NombreInstitucion != "" || ViewBag.Empresa != null || ViewBag.Empresa != "")
+                {
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Busqueda", new { pagina = page, titulo = @ViewBag.Titulo, autor = @ViewBag.NombreAutor, institucion = @ViewBag.NombreInstitucion, Empsearch = @ViewBag.Empresa })) }
+                else
+                {
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Busqueda", new { pagina = page }))}
+            </center>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+</html>

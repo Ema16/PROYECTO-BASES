@@ -7,5 +7,6 @@ namespace BibliotecaCUNOR.Models
     {
         public int CodCargo { get; set; }
         public string Cargo1 { get; set; }
+
     }
 }

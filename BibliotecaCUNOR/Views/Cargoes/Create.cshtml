@@ -1,0 +1,85 @@
+﻿@model BibliotecaCUNOR.Models.Cargo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Cargos</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="all-tittles">Sistema bibliotecario <small>Cargos</small></h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+            <li role="presentation"><a href="~/Asesors/Create1">Asesor</a></li>
+            <li role="presentation" class="active"><a href="~/Cargoes/Create">Cargo</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid" style="margin: 50px 0;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <img src="~/assets/img/category.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                Bienvenido a la sección para registrar nuevos cargos del personal del CUNOR, debes de llenar el siguiente formulario para registrar un cargo
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <ol class="breadcrumb">
+                    <li class="active">Nuevo Cargo</li>
+                    <li><a href="~/Cargoes/Details">Listado de cargos</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container-flat-form">
+            <div class="title-flat-form title-flat-blue">Agregar un nuevo Cargo</div>
+            <form asp-controller="Cargoes" asp-action="Create" class="form-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <legend><i class="zmdi zmdi-bookmark-outline"></i> &nbsp; Datos del Cargo</legend><br>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="group-material">
+                            <input asp-for="Cargo1" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el nombre del cargo" required="" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del cargo">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Cargo</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+            @if (ViewBag.mensajeCargo != null)
+            {
+
+                <script>
+                    swal(
+                        'Exito!',
+                        'Cargo Creado con Exito!',
+                        'success'
+                    );
+                </script>
+
+            }
+        </div>
+    </div>
+</body>
+</html>

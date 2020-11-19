@@ -1,0 +1,149 @@
+﻿
+@model BibliotecaCUNOR.Models.Usuario;
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Administradores</title>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+</head>
+<body>
+        <div class="container">
+            <div class="page-header">
+                <h1 class="all-tittles">Sistema bibliotecario <small>Administración Usuarios</small></h1>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+                <li role="presentation" class="active"><a href="~/Usuarios/Administrador">Administradores</a></li>
+                <li role="presentation"><a href="~/Usuarios/UsuariosBiblioteca">Usuarios de la Biblioteca</a></li>
+                <li role="presentation"><a href="~/Usuarios/personal">Personal Administrativo</a></li>
+            </ul>
+        </div>
+
+        <div class="container-fluid" style="margin: 50px 0;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <img src="~/assets/img/user01.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                    Bienvenido a la sección para registrar nuevos administradores del sistema, debes de llenar todos los campos del siguiente formulario para registrar un administrador
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 lead">
+                    <ol class="breadcrumb">
+                        <li class="active">Nuevo administrador</li>
+                        <li><a href="~/Usuarios/listadmin">Listado de administradores</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container-flat-form">
+                <div class="title-flat-form title-flat-blue">Registrar un nuevo administrador</div>
+                <form asp-action="Create" class="form-padding">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <legend><i class="zmdi zmdi-account-box"></i> &nbsp; Datos básicos</legend><br>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="Nombre" type="text" class="material-control tooltips-general" placeholder="Nombre" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del administrador">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Nombre</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="Apellido" type="text" class="material-control tooltips-general" placeholder="Apellido" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top" title="Escribe los apellidos del administrador">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Apellido</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="CorreoElectronico" type="email" class="material-control tooltips-general" placeholder="Correo Electronico" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el Correo Electronico del Administrador" required="">
+                                <span class="highlight"></span>
+                                <span class="bar text-danger" asp-validation-for="CorreoElectronico"></span>
+                                <label>Correo Electronico</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="Telefono" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número del Administrador" pattern="[0-9]{8,8}" required="" maxlength="8" data-toggle="tooltip" data-placement="top" title="Solamente 8 números">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Teléfono</label>
+                            </div>
+                        </div>
+
+
+                        <!--
+        <label asp-for="CorreoElectronico" class="control-label"></label>
+        <span class="req"><img class="icon" alt="Campo obligatorio" title="Campo obligatorio" src="~/imagenes/req.gif" /></span>
+        <input asp-for="CorreoElectronico" class="form-control" />
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            -->
+
+
+
+                        <div class="col-xs-12">
+                            <legend><i class="zmdi zmdi-lock"></i> &nbsp; Datos de la cuenta</legend><br>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="group-material">
+                                <input asp-for="Usuario1" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el Registro Personal del Administrador" pattern="[0-9]{9,9}" required="" maxlength="9" data-toggle="tooltip" data-placement="top" title="Solamente 9 números">
+                                <span class="highlight"></span>
+                                <span class="bar text-danger" asp-validation-for="Usuario1"></span>
+                                <label>Nombre de usuario</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="Contraseña" type="password" class="material-control tooltips-general" placeholder="Contraseña" required="" maxlength="200" data-toggle="tooltip" data-placement="top" title="Escribe una contraseña">
+                                <span class="highlight"></span>
+                                <span class="bar text-danger" asp-validation-for="Contraseña"></span>
+                                <label>Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="group-material">
+                                <input asp-for="Contraseña2" type="password" class="material-control tooltips-general" placeholder="Repite la contraseña" required="" maxlength="200" data-toggle="tooltip" data-placement="top" title="Repite la contraseña">
+                                <span class="highlight"></span>
+                                <span class="bar text-danger" asp-validation-for="Contraseña2"></span>
+                                <label>Repetir contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="group-material">
+                                <span>Rol</span>
+                                <select asp-for="CodRolusuario" class="tooltips-general material-control" data-toggle="tooltip" data-placement="top" title="Elige el rol para el nuevo administrador"  required="" asp-items="ViewBag.CodRolusuario">
+                                    <option value="" disabled="" selected="">Selecciona un rol</option>
+                                </select>
+                                <span asp-validation-for="CodRolusuario"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <p class="text-center">
+                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>
